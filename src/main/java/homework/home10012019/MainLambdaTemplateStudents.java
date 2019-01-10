@@ -1,7 +1,13 @@
-package homework.home08012019;
+package homework.home10012019;
 
-import static homework.home08012019.Vitamins.*;
-import static homework.home08012019.FruitType.*;
+import static homework.home10012019.Vitamins.*;
+import static homework.home10012019.FruitType.*;
+
+import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +22,37 @@ import  static java.util.Arrays.asList;
 public class MainLambdaTemplateStudents {
 	public static void main(String[] args) {
 		List<Fruit> fruits = fillFruitsList();
+
+		ByteArrayOutputStream byteArr = new ByteArrayOutputStream();
+		try {
+			ObjectOutputStream ous = new ObjectOutputStream(byteArr);
+			ous.writeObject(fruits);
+			ous.close();
+			ByteArrayInputStream bais = new ByteArrayInputStream(byteArr.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+
+			List<Fruit> cloneFruits = (List<Fruit>)ois.readObject();
+
+			System.out.println("Before making changes:");
+			fruits.forEach(System.out::println);
+			System.out.println("!!!");
+			cloneFruits.forEach(System.out::println);
+
+			Fruit fruit = new Fruit(APPLE, 5, LocalDate.of(2019, 1, 6), 20, null);
+			fruit.setVitamins(Arrays.asList(new Vitamins[] { B1, B2, P }));
+			cloneFruits.add(fruit);
+
+			System.out.println("\nAfter making changes:");
+			fruits.forEach(System.out::println);
+			System.out.println("!!!");
+			cloneFruits.forEach(System.out::println);
+
+
+		} catch (IOException  | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
 
 		System.out.println("\nAll collection fruits:");
 		fruits.forEach(System.out::println);
@@ -125,7 +162,7 @@ public class MainLambdaTemplateStudents {
 		Fruit complexFruit = fruits.stream().reduce((fr1, fr2) -> {
 			Fruit result = new Fruit(null, -1, null, -1, null);
 			result.setPrice(Math.max(fr1.getPrice(), fr2.getPrice()));
-			result.setDayToLive(Math.min(fr1.getDayToLive(), fr2.getDayToLive()));
+//			result.setDayToLive(Math.min(fr1.getDayToLive(), fr2.getDayToLive()));
 			return result;
 		}).get();
 		System.out.println(complexFruit);
