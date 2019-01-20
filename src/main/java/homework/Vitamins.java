@@ -1,4 +1,4 @@
-package homework.home10012019;
+package homework;
 
 /**
  * @author spasko
