@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author spasko
+ * @author Klunniy Sergey
  */
 public class FruitShop {
 	private String name;

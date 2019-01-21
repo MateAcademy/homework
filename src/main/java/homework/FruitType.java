@@ -1,7 +1,7 @@
 package homework;
 
 /**
- * @author spasko
+ * @author Klunniy Sergey
  */
 public enum FruitType {
 	STRAWBERRY("Strawberry"), APPLE("apple"), PEAR("Pear"), ORANGE("Orange");

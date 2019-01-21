@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * @author spasko
+ * @author Klunniy Sergey
  */
 public class Fruit {
 	private FruitType fruitType;
