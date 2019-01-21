@@ -1,24 +1,19 @@
-package homework.home10012019;
+package homework;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
- * @author Sergey.
- * This class with Exception.
+ * @author Klunniy Sergey
  */
-public class Fruit implements Serializable {
+public class Fruit {
 	private FruitType fruitType;
 	private int dayToLive;
 	private LocalDate deliveryDate;
 	private int price;
 	private List<Vitamins> vitamins;
 
-//	TODO unchecked exception in this constructor:
 	public Fruit(FruitType fruitType, int dayToLive, LocalDate deliveryDate, int price, List<Vitamins> vitamins) {
-		if(dayToLive<0) throw new IllegalArgumentException();
 		this.fruitType = fruitType;
 		this.dayToLive = dayToLive;
 		this.deliveryDate = deliveryDate;
@@ -30,7 +25,6 @@ public class Fruit implements Serializable {
 		return fruitType;
 	}
 
-
 	public void setFruitType(FruitType fruitType) {
 		this.fruitType = fruitType;
 	}
@@ -39,9 +33,7 @@ public class Fruit implements Serializable {
 		return dayToLive;
 	}
 
-//TODO checked exception in this method:
-	public void setDayToLive(int dayToLive) throws Exception{
-			if (dayToLive < 0 || dayToLive > 100) throw new Exception();
+	public void setDayToLive(int dayToLive) {
 		this.dayToLive = dayToLive;
 	}
 
@@ -49,9 +41,7 @@ public class Fruit implements Serializable {
 		return deliveryDate;
 	}
 
-//	TODO unchecked exception in this method:
 	public void setDeliveryDate(LocalDate deliveryDate) {
-		if (deliveryDate==null) throw new NoSuchElementException();
 		this.deliveryDate = deliveryDate;
 	}
 
@@ -117,16 +107,9 @@ public class Fruit implements Serializable {
 		return true;
 	}
 
-
-//	TODO unchecked exception in this method:
-	public String getPriseAndType() {
-		try {
-			if (fruitType.name() == null) throw null;
-		} catch (NullPointerException e) {
-			System.err.println("The name  fruite is null");
-		}
-
-		String s =  fruitType.name() + "  " + price;
-		return s;
+	@Override
+	public Fruit clone() {
+		return new Fruit(fruitType, dayToLive, deliveryDate, price, vitamins);
 	}
+
 }

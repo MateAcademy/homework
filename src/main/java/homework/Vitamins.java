@@ -1,7 +1,7 @@
-package homework.home10012019;
+package homework;
 
 /**
- * @author spasko
+ * @author Klunniy Sergey.
  */
 public enum Vitamins {
 	A, B, B1, B2, B6, B12, C, D, K, P, E;
